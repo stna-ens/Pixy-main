@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      if (window.location.hostname.includes("pages.dev")) {
+        window.location.replace(
+          "https://pixystudio.app" + window.location.pathname,
+        );
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QMZCGGSZX3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QMZCGGSZX3");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="canonical" href="https://pixystudio.app/" />
+
+    <title>Pixy Studio | Make Pixel-Art Online Free</title>
+    <meta
+      name="description"
+      content="Draw pixel art instantly in your browser. Optimized for iPad, Mac, PC and mobile. Export your sprites easily with Pixy Studio."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pixystudio.app/" />
+    <meta
+      property="og:title"
+      content="Pixy Studio | Free online pixel art maker for Web,iPad and mobile"
+    />
+    <meta
+      property="og:description"
+      content="Draw pixel art instantly in your browser. Optimized for iPad, Mac, PC and mobile. Export your sprites easily with Pixy Studio."
+    />
+    <meta property="og:image" content="https://pixystudio.app/icon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pixystudio.app/" />
+    <meta
+      name="twitter:title"
+      content="Pixy Studio | Free online pixel art maker for Web,iPad and mobile"
+    />
+    <meta
+      name="twitter:description"
+      content="Draw pixel art instantly in your browser. Optimized for iPad, Mac, PC and mobile. Export your sprites easily with Pixy Studio."
+    />
+    <meta name="twitter:image" content="https://pixystudio.app/icon.png" />
+
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=2.3" />
+    <script>
+      window.onerror = function (msg, source, lineno, colno, error) {
+        // Alert for immediate visibility on stubborn mobile devices
+        alert(
+          "Error: " +
+            msg +
+            "\n" +
+            (source || "unknown").split("/").pop() +
+            ":" +
+            lineno,
+        );
+
+        var errDiv = document.createElement("div");
+        errDiv.style.cssText =
+          "position:fixed;top:0;left:0;right:0;background:rgba(255,0,0,0.9);color:white;padding:20px;z-index:99999;font-size:14px;font-family:monospace;pointer-events:none;white-space:pre-wrap;text-align:left;";
+        errDiv.innerText =
+          "Error: " +
+          msg +
+          "\nFile: " +
+          (source ? source.split("/").pop() : "unknown") +
+          "\nLine: " +
+          lineno;
+        document.documentElement.appendChild(errDiv);
+      };
+      console.log("DEBUG: HTML Parsing...");
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Pixy Studio",
+        "url": "https://pixystudio.app",
+        "image": "https://pixystudio.app/icon.png",
+        "description": "A free, professional online pixel art editor optimized for iPad, macOS, Windows, and Android. Draw pixel art, game sprites, and retro illustrations directly in your browser with Apple Pencil support. No installation required.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "iPadOS, iOS, macOS, Windows 10, Windows 11, Android, Linux, ChromeOS",
+        "browserRequirements": "Requires HTML5 Canvas support (Works on Safari, Chrome, Firefox, Edge)",
+        "permissions": "no installation required",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "category": "Free Tool"
+        },
+        "featureList": [
+          "Optimized for Apple Pencil and Touch",
+          "Custom Color Palettes",
+          "Instant PNG Export",
+          "Grid System",
+          "Offline Capable",
+          "Responsive Canvas"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "Pixy Studio Team",
+          "url": "https://pixystudio.app"
+        },
+        "keywords": "pixel art, online editor, sprite maker, ipad drawing tool, 8-bit art, pixel studio"
+      }
+    </script>
+  </head>
+  <body>
+    <div
+      id="appLoading"
+      style="
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-family: monospace;
+        color: black;
+        z-index: 9999;
+      "
+    >
+      LOADING...
+    </div>
+    <script>
+      console.log("DEBUG: Body Loaded");
+    </script>
+    <div class="content-wrapper">
+      <div class="header">
+        <button id="undoBtn" class="icon-btn" title="Undo">
+          <svg
+            viewBox="0 0 12 12"
+            width="24"
+            height="24"
+            shape-rendering="crispEdges"
+          >
+            <!-- Pixelated Curved Undo Arrow -->
+            <!-- Arrow head (left pointing) -->
+            <rect fill="currentColor" x="0" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="1" y="2" width="1" height="1" />
+            <rect fill="currentColor" x="1" y="4" width="1" height="1" />
+            <rect fill="currentColor" x="2" y="1" width="1" height="1" />
+            <rect fill="currentColor" x="2" y="5" width="1" height="1" />
+            <!-- Horizontal bar -->
+            <rect fill="currentColor" x="2" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="3" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="4" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="5" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="6" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="7" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="8" y="3" width="1" height="1" />
+            <!-- Curve down -->
+            <rect fill="currentColor" x="9" y="4" width="1" height="1" />
+            <rect fill="currentColor" x="9" y="5" width="1" height="1" />
+            <rect fill="currentColor" x="9" y="6" width="1" height="1" />
+            <rect fill="currentColor" x="9" y="7" width="1" height="1" />
+            <!-- Bottom curve -->
+            <rect fill="currentColor" x="8" y="8" width="1" height="1" />
+            <rect fill="currentColor" x="7" y="9" width="1" height="1" />
+            <rect fill="currentColor" x="6" y="9" width="1" height="1" />
+            <rect fill="currentColor" x="5" y="9" width="1" height="1" />
+          </svg>
+        </button>
+        <span class="title-text">Pixy</span>
+        <div id="proBadge" class="pro-badge hidden">PRO</div>
+        <button id="saveDraftBtn" class="header-btn">Save</button>
+      </div>
+      <div class="game-area">
+        <div id="drawingBoard" class="drawing-board">
+          <!-- Drawing Mode Toggle Switch -->
+          <!-- Drawing Mode Toggle Switch (Vertical/Blocky) -->
+          <div class="draw-mode-switch vertical-retro" id="drawModeSwitch">
+            <div
+              class="mode-option active"
+              data-mode="progressive"
+              title="Progressive Mode"
+            >
+              PROG
+            </div>
+            <div class="mode-option" data-mode="instant" title="Instant Mode">
+              INST
+            </div>
+          </div>
+          <div class="tools" id="tools">
+            <button id="layersBtn">Layers</button>
+            <button id="themeBtn">Theme</button>
+            <button id="eraserBtn">Eraser</button>
+            <button id="fillBtn">Fill</button>
+
+            <button id="changeGridNumber">Cell Count</button>
+            <button id="resetBtn">Reset</button>
+            <input type="color" id="colorPicker" value="#ffffff" />
+          </div>
+        </div>
+        <!-- Saved Section -->
+        <div id="savedSidebar" class="saved-sidebar">
+          <h3>Saved</h3>
+          <div id="savedList" class="saved-list">
+            <!-- Saved items will go here -->
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <p>Made By ST&A</p>
+      </div>
+    </div>
+
+    <!-- GLOBAL SAVED PROJECTS MODAL (Mobile) -->
+    <div id="savedProjectsModal" class="saved-modal">
+      <div class="saved-modal-header">
+        <span>SAVED PROJECTS</span>
+        <button class="close-saved-btn" onclick="toggleSavedModal()">X</button>
+      </div>
+      <div id="mobileSavedList" class="saved-list-grid">
+        <!-- JS will populate this -->
+      </div>
+    </div>
+
+    <!-- GLOBAL CELL COUNT MODAL -->
+    <div id="cellCountPanel" class="cell-count-modal hidden">
+      <div class="modal-header">CELL COUNT</div>
+      <div class="cell-panel-content">
+        <div class="slider-wrapper">
+          <div class="cell-presets">
+            <div class="preset-mark" data-val="64">64</div>
+            <div class="preset-mark" data-val="32">32</div>
+            <div class="preset-mark" data-val="16">16</div>
+            <div class="preset-mark" data-val="8">8</div>
+          </div>
+          <input
+            type="range"
+            id="cellSlider"
+            min="1"
+            max="100"
+            value="16"
+            class="modal-slider"
+          />
+        </div>
+        <div class="input-row">
+          <input
+            type="number"
+            id="cellNumberInput"
+            min="1"
+            max="100"
+            value="16"
+          />
+          <button id="applyCellCount">APPLY</button>
+        </div>
+      </div>
+      <button class="close-modal-btn" onclick="toggleCellCountPanel()">
+        CANCEL
+      </button>
+    </div>
+
+    <!-- Layers Panel (Sidebar/Modal) -->
+    <div id="layersPanel" class="layers-panel hidden">
+      <div class="panel-header">
+        <span>LAYERS</span>
+        <button id="closeLayersBtn" class="close-panel-btn">X</button>
+      </div>
+      <div class="layers-controls">
+        <button id="addLayerBtn" title="Add Layer">+</button>
+        <button id="moveLayerUpBtn" title="Move Up">^</button>
+        <button id="moveLayerDownBtn" title="Move Down">v</button>
+        <button id="deleteLayerBtn" title="Delete Layer" class="delete-btn">
+          <!-- Pixelated Backspace Icon -->
+          <svg
+            viewBox="0 0 20 20"
+            shape-rendering="crispEdges"
+            style="width: 24px; height: 24px"
+          >
+            <path
+              fill="currentColor"
+              d="
+              M6,3 h12 v14 h-12 v-2 h-2 v-2 h-2 v-6 h2 v-2 h2 v-2 z
+              M7,5 v10 h10 v-10 h-10 z
+              M9,7 h2 v2 h2 v-2 h2 v2 h-2 v2 h2 v2 h-2 v-2 h-2 v2 h-2 v-2 h2 v-2 h-2 v-2 z
+            "
+            />
+          </svg>
+        </button>
+      </div>
+      <div id="layersList" class="layers-list">
+        <!-- JS will populate: <div class="layer-item active">Layer 1</div> -->
+      </div>
+    </div>
+
+    <!-- Theme Modal -->
+    <div id="themeModal" class="theme-modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Select Theme</h2>
+        <div class="theme-presets">
+          <!-- Filled by JS -->
+        </div>
+
+        <hr />
+
+        <h3>Create Custom Theme</h3>
+        <div class="custom-theme-inputs">
+          <input
+            type="text"
+            id="customThemeName"
+            placeholder="Theme Name"
+            class="retro-input"
+          />
+
+          <label
+            >Background: <input type="color" id="customBgMain" value="#303030"
+          /></label>
+          <label
+            >Container:
+            <input type="color" id="customBgContainer" value="#222222"
+          /></label>
+          <label
+            >Grid Color: <input type="color" id="customBgCell" value="#333333"
+          /></label>
+          <label
+            >Buttons: <input type="color" id="customBtnBg" value="#515151"
+          /></label>
+          <label
+            >Text: <input type="color" id="customText" value="#ffffff"
+          /></label>
+        </div>
+        <div class="modal-buttons">
+          <button id="applyPreviewBtn" class="secondary-btn">
+            Apply Preview
+          </button>
+          <button id="saveCustomThemeBtn">Save Custom Theme</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Container -->
+    <div class="export-container">
+      <div id="exportMenu" class="export-menu hidden">
+        <button id="importProjectBtn">Import Project</button>
+        <input type="file" id="importFileInput" style="display: none" />
+        <button id="exportProjectBtn">Export Project</button>
+        <button id="exportStickerBtn">Export Sticker</button>
+        <button id="exportPngBtn">Export PNG</button>
+      </div>
+      <button id="exportMainBtn" class="floating-btn" title="Export">
+        <svg
+          viewBox="0 0 24 24"
+          width="32"
+          height="32"
+          shape-rendering="crispEdges"
+        >
+          <!-- Retro Download (Balanced 2px) -->
+          <!-- Tray Bottom -->
+          <rect fill="currentColor" x="5" y="19" width="14" height="2" />
+          <!-- Tray Sides -->
+          <rect fill="currentColor" x="5" y="17" width="2" height="2" />
+          <rect fill="currentColor" x="17" y="17" width="2" height="2" />
+
+          <!-- Arrow Shaft -->
+          <rect fill="currentColor" x="11" y="4" width="2" height="8" />
+          <!-- Arrow Head -->
+          <rect fill="currentColor" x="8" y="12" width="2" height="2" />
+          <rect fill="currentColor" x="14" y="12" width="2" height="2" />
+          <rect fill="currentColor" x="9" y="14" width="2" height="2" />
+          <rect fill="currentColor" x="13" y="14" width="2" height="2" />
+          <rect fill="currentColor" x="10" y="16" width="4" height="2" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteConfirmModal" class="theme-modal">
+      <div class="modal-content" style="max-width: 300px; text-align: center">
+        <h2>DELETE PROJECT?</h2>
+        <p
+          style="
+            font-size: 20px;
+            font-family: 'VT323', monospace;
+            margin: 20px 0;
+          "
+        >
+          Are you sure you want to delete this saved project?
+        </p>
+        <div class="modal-buttons" style="flex-direction: column; gap: 10px">
+          <button id="confirmDeleteBtn" class="modal-delete-btn">DELETE</button>
+          <button
+            id="cancelDeleteBtn"
+            class="secondary-btn"
+            style="width: 100%"
+          >
+            CANCEL
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme Delete Confirmation Modal -->
+    <div id="deleteThemeModal" class="theme-modal">
+      <div class="modal-content" style="max-width: 400px">
+        <h2>DELETE THEME?</h2>
+        <p
+          style="
+            font-size: 20px;
+            font-family: 'VT323', monospace;
+            margin: 20px 0;
+          "
+        >
+          Are you sure you want to delete this theme?
+        </p>
+        <div class="modal-buttons" style="flex-direction: column; gap: 10px">
+          <button id="confirmDeleteThemeBtn" class="modal-delete-btn">
+            DELETE
+          </button>
+          <button
+            id="cancelDeleteThemeBtn"
+            class="secondary-btn"
+            style="width: 100%"
+          >
+            CANCEL
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme Rename Modal -->
+    <div id="renameThemeModal" class="theme-modal">
+      <div class="modal-content" style="max-width: 400px">
+        <h2>RENAME THEME</h2>
+        <input
+          type="text"
+          id="renameThemeInput"
+          class="retro-input"
+          placeholder="Theme Name"
+          style="margin: 20px 0"
+        />
+        <div class="modal-buttons" style="flex-direction: column; gap: 10px">
+          <button id="confirmRenameBtn" style="width: 100%">SAVE</button>
+          <button
+            id="cancelRenameBtn"
+            class="secondary-btn"
+            style="width: 100%"
+          >
+            CANCEL
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Saved Projects Button (Matched to Export Button) -->
+    <button id="openSavedBtn" title="Saved Projects" class="floating-btn">
+      <svg
+        viewBox="0 0 24 24"
+        width="32"
+        height="32"
+        shape-rendering="crispEdges"
+      >
+        <path fill="currentColor" d="M2,6 L2,18 L22,18 L22,8 L12,8 L10,6 Z" />
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          d="M2,6 L2,18 L22,18 L22,8 L12,8 L10,6 Z"
+        />
+      </svg>
+    </button>
+
+    <!-- RevenueCat Paywall Modal -->
+    <div id="paywallModal" class="theme-modal">
+      <div class="modal-content paywall-content">
+        <span class="close-paywall">&times;</span>
+        <h2 class="paywall-title">UNLOCK PIXY PRO</h2>
+        <div class="paywall-features">
+          <div class="feature-item">
+            <span class="feature-icon">✨</span>
+            <div class="feature-text">
+              <strong>Unlimited Layers</strong>
+              <p>Break the 3-layer limit. Create complex art.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🎨</span>
+            <div class="feature-text">
+              <strong>Premium Themes</strong>
+              <p>Access Cyberpunk, Vaporwave, and more.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">❤️</span>
+            <div class="feature-text">
+              <strong>Support Indie Dev</strong>
+              <p>Help keep Pixy ad-free and updated.</p>
+            </div>
+          </div>
+        </div>
+        <div class="paywall-actions">
+          <button id="purchaseMonthlyBtn" class="paywall-btn">
+            <span>Monthly</span>
+            <span id="priceMonthly">...</span>
+          </button>
+          <button id="purchaseYearlyBtn" class="paywall-btn highlight">
+            <span>Yearly (Best Value)</span>
+            <span id="priceYearly">...</span>
+          </button>
+        </div>
+        <button id="restorePurchasesBtn" class="restore-btn">
+          Restore Purchases
+        </button>
+        <p class="paywall-footer">Recurring billing. Cancel anytime.</p>
+      </div>
+    </div>
+
+    <script src="script.js?v=2.5"></script>
+    <script>
+      // Force unregister any legacy service workers
+      try {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .getRegistrations()
+            .then(function (registrations) {
+              for (let registration of registrations) {
+                registration.unregister();
+                console.log("Service Worker unregistered");
+              }
+            })
+            .catch(function (err) {
+              console.warn("SW cleanup failed", err);
+            });
+        }
+      } catch (e) {
+        console.warn("ServiceWorker API restricted", e);
+      }
+    </script>
+  </body>
+</html>

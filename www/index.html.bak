@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Pixy</title>
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=2.0" />
+  </head>
+  <body>
+    <script>
+      console.log("DEBUG: HTML Loaded");
+    </script>
+    <div class="content-wrapper">
+      <div class="header">
+        <button id="undoBtn" class="icon-btn" title="Undo">
+          <svg
+            viewBox="0 0 12 12"
+            width="24"
+            height="24"
+            shape-rendering="crispEdges"
+          >
+            <!-- Pixelated Curved Undo Arrow -->
+            <!-- Arrow head (left pointing) -->
+            <rect fill="currentColor" x="0" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="1" y="2" width="1" height="1" />
+            <rect fill="currentColor" x="1" y="4" width="1" height="1" />
+            <rect fill="currentColor" x="2" y="1" width="1" height="1" />
+            <rect fill="currentColor" x="2" y="5" width="1" height="1" />
+            <!-- Horizontal bar -->
+            <rect fill="currentColor" x="2" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="3" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="4" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="5" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="6" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="7" y="3" width="1" height="1" />
+            <rect fill="currentColor" x="8" y="3" width="1" height="1" />
+            <!-- Curve down -->
+            <rect fill="currentColor" x="9" y="4" width="1" height="1" />
+            <rect fill="currentColor" x="9" y="5" width="1" height="1" />
+            <rect fill="currentColor" x="9" y="6" width="1" height="1" />
+            <rect fill="currentColor" x="9" y="7" width="1" height="1" />
+            <!-- Bottom curve -->
+            <rect fill="currentColor" x="8" y="8" width="1" height="1" />
+            <rect fill="currentColor" x="7" y="9" width="1" height="1" />
+            <rect fill="currentColor" x="6" y="9" width="1" height="1" />
+            <rect fill="currentColor" x="5" y="9" width="1" height="1" />
+          </svg>
+        </button>
+        <span class="title-text"
+          >Pixy <span class="beta-tag">(beta)</span></span
+        >
+        <button id="saveDraftBtn" class="header-btn">Save</button>
+      </div>
+      <div class="game-area">
+        <div id="drawingBoard" class="drawing-board">
+          <div class="tools" id="tools">
+            <button id="layersBtn">Layers</button>
+            <button id="themeBtn">Theme</button>
+            <button id="eraserBtn">Eraser</button>
+            <button id="changeGridNumber">Cell Count</button>
+            <button id="resetBtn">Reset</button>
+            <input type="color" id="colorPicker" value="#ffffff" />
+          </div>
+        </div>
+        <!-- Saved Section -->
+        <div id="savedSidebar" class="saved-sidebar">
+          <h3>Saved</h3>
+          <div id="savedList" class="saved-list">
+            <!-- Saved items will go here -->
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <p>Made By ST&A</p>
+      </div>
+    </div>
+
+    <!-- GLOBAL SAVED PROJECTS MODAL (Mobile) -->
+    <div id="savedProjectsModal" class="saved-modal">
+      <div class="saved-modal-header">
+        <span>SAVED PROJECTS</span>
+        <button class="close-saved-btn" onclick="toggleSavedModal()">X</button>
+      </div>
+      <div id="mobileSavedList" class="saved-list-grid">
+        <!-- JS will populate this -->
+      </div>
+    </div>
+
+    <!-- GLOBAL CELL COUNT MODAL -->
+    <div id="cellCountPanel" class="cell-count-modal hidden">
+      <div class="modal-header">CELL COUNT</div>
+      <div class="cell-panel-content">
+        <input
+          type="range"
+          id="cellSlider"
+          min="1"
+          max="100"
+          value="16"
+          class="modal-slider"
+        />
+        <div class="input-row">
+          <input
+            type="number"
+            id="cellNumberInput"
+            min="1"
+            max="100"
+            value="16"
+          />
+          <button id="applyCellCount">APPLY</button>
+        </div>
+      </div>
+      <button class="close-modal-btn" onclick="toggleCellCountPanel()">
+        CANCEL
+      </button>
+    </div>
+
+    <!-- Layers Panel (Sidebar/Modal) -->
+    <div id="layersPanel" class="layers-panel hidden">
+      <div class="panel-header">
+        <span>LAYERS</span>
+        <button id="closeLayersBtn" class="close-panel-btn">X</button>
+      </div>
+      <div class="layers-controls">
+        <button id="addLayerBtn" title="Add Layer">+</button>
+        <button id="moveLayerUpBtn" title="Move Up">^</button>
+        <button id="moveLayerDownBtn" title="Move Down">v</button>
+        <button id="deleteLayerBtn" title="Delete Layer" class="delete-btn">
+          <!-- Pixelated Backspace Icon -->
+          <svg
+            viewBox="0 0 20 20"
+            shape-rendering="crispEdges"
+            style="width: 24px; height: 24px"
+          >
+            <path
+              fill="var(--btn-text)"
+              d="
+              M6,3 h12 v14 h-12 v-2 h-2 v-2 h-2 v-6 h2 v-2 h2 v-2 z
+              M7,5 v10 h10 v-10 h-10 z
+              M9,7 h2 v2 h2 v-2 h2 v2 h-2 v2 h2 v2 h-2 v-2 h-2 v2 h-2 v-2 h2 v-2 h-2 v-2 z
+            "
+            />
+          </svg>
+        </button>
+      </div>
+      <div id="layersList" class="layers-list">
+        <!-- JS will populate: <div class="layer-item active">Layer 1</div> -->
+      </div>
+    </div>
+
+    <!-- Theme Modal -->
+    <div id="themeModal" class="theme-modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Select Theme</h2>
+        <div class="theme-presets">
+          <!-- Filled by JS -->
+        </div>
+
+        <hr />
+
+        <h3>Create Custom Theme</h3>
+        <div class="custom-theme-inputs">
+          <input
+            type="text"
+            id="customThemeName"
+            placeholder="Theme Name"
+            style="
+              width: 100%;
+              padding: 8px;
+              margin-bottom: 10px;
+              border-radius: 0;
+              border: 1px solid #000;
+            "
+          />
+
+          <label
+            >Background: <input type="color" id="customBgMain" value="#303030"
+          /></label>
+          <label
+            >Container:
+            <input type="color" id="customBgContainer" value="#222222"
+          /></label>
+          <label
+            >Grid Color: <input type="color" id="customBgCell" value="#333333"
+          /></label>
+          <label
+            >Buttons: <input type="color" id="customBtnBg" value="#515151"
+          /></label>
+          <label
+            >Text: <input type="color" id="customText" value="#ffffff"
+          /></label>
+        </div>
+        <div class="modal-buttons">
+          <button id="applyPreviewBtn" class="secondary-btn">
+            Apply Preview
+          </button>
+          <button id="saveCustomThemeBtn">Save Custom Theme</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Container -->
+    <div class="export-container">
+      <div id="exportMenu" class="export-menu hidden">
+        <button id="exportStickerBtn">Export Sticker</button>
+        <button id="exportPngBtn">Export PNG</button>
+      </div>
+      <button id="exportMainBtn" class="floating-btn" title="Export">
+        <svg
+          viewBox="0 0 24 24"
+          width="32"
+          height="32"
+          shape-rendering="crispEdges"
+        >
+          <!-- Retro Download (Balanced 2px) -->
+          <!-- Tray Bottom -->
+          <rect fill="currentColor" x="5" y="19" width="14" height="2" />
+          <!-- Tray Sides -->
+          <rect fill="currentColor" x="5" y="17" width="2" height="2" />
+          <rect fill="currentColor" x="17" y="17" width="2" height="2" />
+
+          <!-- Arrow Shaft -->
+          <rect fill="currentColor" x="11" y="4" width="2" height="8" />
+          <!-- Arrow Head -->
+          <rect fill="currentColor" x="8" y="12" width="2" height="2" />
+          <rect fill="currentColor" x="14" y="12" width="2" height="2" />
+          <rect fill="currentColor" x="9" y="14" width="2" height="2" />
+          <rect fill="currentColor" x="13" y="14" width="2" height="2" />
+          <rect fill="currentColor" x="10" y="16" width="4" height="2" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Floating Saved Projects Button (Matched to Export Button) -->
+    <button id="openSavedBtn" title="Saved Projects" class="floating-btn">
+      <svg
+        viewBox="0 0 24 24"
+        width="32"
+        height="32"
+        shape-rendering="crispEdges"
+      >
+        <path fill="currentColor" d="M2,6 L2,18 L22,18 L22,8 L12,8 L10,6 Z" />
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          d="M2,6 L2,18 L22,18 L22,8 L12,8 L10,6 Z"
+        />
+      </svg>
+    </button>
+
+    <script src="script.js?v=2.0"></script>
+    <script>
+      // Force unregister any legacy service workers
+      try {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .getRegistrations()
+            .then(function (registrations) {
+              for (let registration of registrations) {
+                registration.unregister();
+                console.log("Service Worker unregistered");
+              }
+            })
+            .catch(function (err) {
+              console.warn("SW cleanup failed", err);
+            });
+        }
+      } catch (e) {
+        console.warn("ServiceWorker API restricted", e);
+      }
+    </script>
+  </body>
+</html>

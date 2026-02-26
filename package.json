@@ -1,0 +1,30 @@
+{
+  "name": "pixy-mobile",
+  "version": "1.0.0",
+  "description": "Pixel Art Tool Mobile App",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo 'No build required'",
+    "deploy": "wrangler pages deploy",
+    "ios": "cap open ios",
+    "android": "cap open android"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor-community/media": "^8.0.1",
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/clipboard": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/filesystem": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
+    "@capacitor/share": "^8.0.0",
+    "@revenuecat/purchases-capacitor": "^12.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "wrangler": "^4.54.0"
+  }
+}

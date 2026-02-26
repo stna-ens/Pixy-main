@@ -1,0 +1,6 @@
+# Ignore native platforms to speed up build and prevent issues
+android/
+ios/
+node_modules/
+.git/
+.DS_Store

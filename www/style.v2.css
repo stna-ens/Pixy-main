@@ -1,0 +1,1149 @@
+:root {
+  /* Retro Vibes - Poolsuite Palette inspired */
+  --bg-main: #ffdad5; /* Classic Poolsuite Peach */
+  --bg-container: #fff8f0; /* Lighter container bg */
+  --bg-cell: #ffffff; /* Canvas default */
+  --border-cell: rgba(0, 0, 0, 0.1); /* Default grid line color */
+  --text-main: #000000;
+
+  /* Retro Buttons */
+  --btn-bg: #ececec;
+  --btn-text: #000000;
+  --btn-border: #000000;
+  --btn-hover: #ffffff;
+  --btn-active-bg: #000000;
+  --btn-active-text: #ffffff;
+}
+
+html,
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; /* Disable iOS Callouts/Magnifier */
+  -webkit-tap-highlight-color: transparent;
+  font-family: "VT323", monospace; /* Retro Font */
+  font-size: 20px; /* Slightly larger for retro readability */
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxwYXRoIGZpbGw9ImJsYWNrIiBkPSJNMCwwaDF2MWgtMXpNMSwwaDF2MWgtMXpNMCwxaDF2MWgtMXpNMiwwaDF2MWgtMXpNMSwxaDF2MWgtMXpNMCwyaDF2MWgtMXpMMywwaDF2MWgtMXpNMiwxaDF2MWgtMXpNMSwyaDF2MWgtMXpNMCwzaDF2MWgtMXpNNCwwaDF2MWgtMXpNMywxaDF2MWgtMXpNMiwyaDF2MWgtMXpNMSwzaDF2MWgtMXpNMCw0aDF2MWgtMXpMNSwwaDF2MWgtMXpNNCwxaDF2MWgtMXpNMywyaDF2MWgtMXpNMiwzaDF2MWgtMXpNMSw0aDF2MWgtMXpNMCw1aDF2MWgtMXpMNiwwaDF2MWgtMXpNNSwxaDF2MWgtMXpNNCwyaDF2MWgtMXpNMywzaDF2MWgtMXpNMiw0aDF2MWgtMXpNMSw1aDF2MWgtMXpNMCw2aDF2MWgtMXpMNywcaDF2MWgtMXpMNiwxaDF2MWgtMXpNNSwyaDF2MWgtMXpNNCwzaDF2MWgtMXpNMiw0aDF2MWgtMXpNMSw1aDF2MWgtMXpNMCw2aDF2MWgtMXpMNywxM2gxdjFoLTF6TTcsMTRoMXYxaC0xejc4aDF2MWgtMXpNNyw5aDF2MWgtMXpNNyw4aDF2MWgtMXpNNywxMGgxdjFoLTF6TTcsMTFoMXYxaC0xejc4aDF2MWgtMXpNOCwwaDF2MWgtMXpNNywxMmgxdjFoLTF6TTksMGgxdjFoLTF6TTYsMTNoMXYxaC0xejc4aDF2MWgtMXpNOCwxMmgxdjFoLTF6TTgsMTFoMXYxaC0xejc4aDF2MWgtMXpNOCwxMGgxdjFoLTF6TTgsOWgxdjFoLTF6TTgsMTRoMXYxaC0xejc4aDF2MWgtMXpNOCwxM2gxdjFoLTF6TTgsMGgxdjFoLTF6TTgsMTVoMXYxaC0xejc4aDF2MWgtMXpNOCwxNmgxdjFoLTF6TTgsMTdoMXYxaC0xejc4aDF2MWgtMXpNOCwxOGgxdjFoLTF6TTksMTloMXYxaC0xejc5aDF2MWgtMXpNOSwxNGgxdjFoLTF6TTksMTNoMXYxaC0xejc5aDF2MWgtMXpNOSwxaDF2MWgtMXpNOSwxMmgxdjFoLTF6TTksMTFoMXYxaC0xejc5aDF2MWgtMXpNOSwxMGgxdjFoLTF6TTksMTVoMXYxaC0xejc5aDF2MWgtMXpMMTAsMGgxdjFoLTF6TTksMTZoMXYxaC0xejc5aDF2MWgtMXpMMTAsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTAsMTloMXYxaC0xejc5aDF2MWgtMXpMMTAsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTAsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTAsMWgxdjFoLTF6TTEwLDEyaDF2MWgtMXpNMTEsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTAsMTFoMXYxaC0xejc5aDF2MWgtMXpMMTAsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTEsMGgxdjFoLTF6TTEwLDE2aDF2MWgtMXpMMTEsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTloMXYxaC0xejc5aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpNMTEsMTNoMXYxaC0xejc5aDF2MWgtMXpNMTEsMTJoMXYxaC0xejc5aDF2MWgtMXpNMTEsM2gxdjFoLTF6TTExLDExaDF2MWgtMXpNMTEsMTVoMXYxaC0xejc5aDF2MWgtMXpNMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTIsMGgxdjFoLTF6TTExLDE2aDF2MWgtMXpMMTIsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTIsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTIsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTIsNGgxdjFoLTF6TTEyLDExaDF2MWgtMXpMMTMsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTIsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTMsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTMsMGgxdjFoLTF6TTEyLDE2aDF2MWgtMXpMMTMsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTMsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTMsMTJoMXYxaC0xejc5aDF2MWgtMXpMMTMsNWhHMXYxaC0xejc5aDF2MWgtMXpMMTMsMTFoMXYxaC0xejc5aDF2MWgtMXpMMTMsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTQsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTQsMGgxdjFoLTF6TTEzLDE2aDF2MWgtMXpMMTQsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTQsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTQsMTJoMXYxaC0xejc5aDF2MWgtMXpMMTQsNmgxdjFoLTF6TTE0LDExaDF2MWgtMXpMMTUsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTQsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTUsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTUsMGgxdjFoLTF6TTE0LDE2aDF2MWgtMXpMMTUsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTUsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc5aDF2MWgtMXpMMTUsN2gxdjFoLTF6TTE1LDExaDF2MWgtMXpMMTEsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTYsMGgxdjFoLTF6TTE1LDE2aDF2MWgtMXpMMTYsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc5aDF2MWgtMXpMMTYsOGgxdjFoLTF6TTE2LDExaDF2MWgtMXpMMTcsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTcsMGgxdjFoLTF6TTE2LDE2aDF2MWgtMXpMMTcsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTcsMThoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc5aDF2MWgtMXpMMTcsOWgxdjFoLTF6TTE3LDExaDF2MWgtMXpMMTgsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTgsMGgxdjFoLTF6TTE3LDE2aDF2MWgtMXpMMTgsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTEsMThoMXYxaC0xejc5aDF2MWgtMXpMMTgsMTloMXYxaC0xejc5aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc5aDF2MWgtMXpMMTgsMTBoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTFoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc5aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpMMTksMGgxdjFoLTF6TTE4LDE2aDF2MWgtMXpMMTEsMTcoMXYxaC0xejc5aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTkoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTMsMTFoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc5aDF2MWgtMXpMMjAsMGgxdjFoLTF6TTE5LDE2aDF2MWgtMXpMMjAsMTdhMXYxaC0xejc5aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjEsMGgxdjFoLTF6TDIwLDE2aDF2MWgtMXpMMjEsMTdoMXYxaC0xejc5aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjIsMGgxdjFoLTF6TDIxLDE2aDF2MWgtMXpMMjIsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjMsMGgxdjFoLTF6TDIyLDE2aDF2MWgtMXpMMjMsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjQsMGgxdjFoLTF6TDIzLDE2aDF2MWgtMXpMMjQsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjUsMGgxdjFoLTF6TDI0LDE2aDF2MWgtMXpMMjUsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjYsMGgxdjFoLTF6TDI1LDE2aDF2MWgtMXpMMjYsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjcsMGgxdjFoLTF6TDI2LDE2aDF2MWgtMXpMMjcsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjgsMGgxdjFoLTF6TDI3LDE2aDF2MWgtMXpMMjgsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMjksMGgxdjFoLTF6TDI4LDE2aDF2MWgtMXpMMjksMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMzAsMGgxdjFoLTF6TDI5LDE2aDF2MWgtMXpMMzAsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXpMMzEsMGgxdjFoLTF6TDMwLDE2aDF2MWgtMXpMMzEsMTdoMXYxaC0xejc9aDF2MWgtMXpMMTEsMThoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTloMXYxaC0xejc9aDF2MWgtMXpMMTEsMjBoMXYxaC0xejc9aDF2MWgtMXpMMTEsMjFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTNoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTJoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTFhMXYxaC0xejc9aDF2MWgtMXpMMTEsMTVoMXYxaC0xejc9aDF2MWgtMXpMMTEsMTRoMXYxaC0xejc9aDF2MWgtMXIiLz48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEsMWgxdjFoLTF6TTEsMmgxdjFoLTF6TTEsM2gxdjFoLTF6TTEsNGgxdjFoLTF6TTEsNWgxdjFoLTF6TTEsNmgxdjFoLTF6TTEsN2gxdjFoLTF6TTEsOGgxdjFoLTF6TTEsOWgxdjFoLTF6TTEsMTBoMXYxaC0xejc4aDF2MWgtMXpNNiwxaDF2MWgtMXpNNywxaDF2MWgtMXpNNiwyaDF2MWgtMXpNNywyaDF2MWgtMXpNNiwzaDF2MWgtMXpNNywzaDF2MWgtMXpNNiw0aDF2MWgtMXpNNyw0aDF2MWgtMXpNNiw1aDF2MWgtMXpNNyw1aDF2MWgtMXpNNiw2aDF2MWgtMXpNNyw2aDF2MWgtMXpNNiw3aDF2MWgtMXpNNyw3aDF2MWgtMXpNNiw4aDF2MWgtMXpNNyw4aDF2MWgtMXpNNiw5aDF2MWgtMXpNNyw5aDF2MWgtMXpNNiwxMGgxdjFoLTF6TTEsMTFoMXYxaC0xejc4aDF2MWgtMXpNNiwxMWgxdjFoLTF6TTEsMTJoMXYxaC0xejc4aDF2MWgtMXpNNiwxMmgxdjFoLTF6TTEsMTNoMXYxaC0xejc4aDF2MWgtMXpNNiwxM2gxdjFoLTF6TTEsMTRoMXYxaC0xejc4aDF2MWgtMXpNNiwxNGgxdjFoLTF6TTEsMTVoMXYxaC0xejc4aDF2MWgtMXpNNiwxNWgxdjFoLTF6TTEsMTZoMXYxaC0xejc4aDF2MWgtMXpNNiwxNmgxdjFoLTF6TTEsMTdoMXYxaC0xejc4aDF2MWgtMXpNNiwxN2gxdjFoLTF6TTEsMThoMXYxaC0xejc4aDF2MWgtMXpNNiwxOGgxdjFoLTF6TTIsMmgxdjFoLTF6TTIsM2gxdjFoLTF6TTIsNGgxdjFoLTF6TTIsNWgxdjFoLTF6TTIsNmgxdjFoLTF6TTIsN2gxdjFoLTF6TTIsOGgxdjFoLTF6TTIsOWgxdjFoLTF6TTIsMTBoMXYxaC0xejc4aDF2MWgtMXpNNiwyaDF2MWgtMXpNNiwzaDF2MWgtMXpNNiw0aDF2MWgtMXpNNiw1aDF2MWgtMXpNNiw2aDF2MWgtMXpNNiw3aDF2MWgtMXpNNiw4aDF2MWgtMXpNNiw5aDF2MWgtMXpNNiwxMGgxdjFoLTF6TTIsMTFoMXYxaC0xejc4aDF2MWgtMXpNNiwxMWgxdjFoLTF6TTIsMTJoMXYxaC0xejc4aDF2MWgtMXpNNiwxMmgxdjFoLTF6TTIsMTNoMXYxaC0xejc4aDF2MWgtMXpNNiwxM2gxdjFoLTF6TTIsMTRoMXYxaC0xejc4aDF2MWgtMXpNNiwxNGgxdjFoLTF6TTIsMTVoMXYxaC0xejc4aDF2MWgtMXpNNiwxNWgxdjFoLTF6TTIsMTZoMXYxaC0xejc4aDF2MWgtMXpNNiwxNmgxdjFoLTF6TTIsMTdoMXYxaC0xejc4aDF2MWgtMXpNNiwxN2gxdjFoLTF6TTMsM2gxdjFoLTF6TTMsNGgxdjFoLTF6TTMsNWgxdjFoLTF6TTMsNmgxdjFoLTF6TTMsN2gxdjFoLTF6TTMsOGgxdjFoLTF6TTMsOWgxdjFoLTF6TTMsMTBoMXYxaC0xejc4aDF2MWgtMXpNNiwzaDF2MWgtMXpNNiw0aDF2MWgtMXpNNiw1aDF2MWgtMXpNNiw2aDF2MWgtMXpNNiw3aDF2MWgtMXpNNiw4aDF2MWgtMXpNNiw5aDF2MWgtMXpNNiwxMGgxdjFoLTF6TTMsMTFoMXYxaC0xejc4aDF2MWgtMXpNNiwxMWgxdjFoLTF6TTMsMTJoMXYxaC0xejc4aDF2MWgtMXpNNiwxMmgxdjFoLTF6TTMsMTNoMXYxaC0xejc4aDF2MWgtMXpNNiwxM2gxdjFoLTF6TTMsMTRoMXYxaC0xejc4aDF2MWgtMXpNNiwxNGgxdjFoLTF6TTMsMTVoMXYxaC0xejc4aDF2MWgtMXpNNiwxNWgxdjFoLTF6TTQsNGgxdjFoLTF6TTQsNWgxdjFoLTF6TTQsNmgxdjFoLTF6TTQsN2gxdjFoLTF6TTQsOGgxdjFoLTF6TTQsOWgxdjFoLTF6TTQsMTBoMXYxaC0xejc4aDF2MWgtMXpNNiw0aDF2MWgtMXpNNiw1aDF2MWgtMXpNNiw2aDF2MWgtMXpNNiw3aDF2MWgtMXpNNiw4aDF2MWgtMXpNNiw5aDF2MWgtMXpNNiwxMGgxdjFoLTF6TTQsMTFoMXYxaC0xejc4aDF2MWgtMXpNNiwxMWgxdjFoLTF6TTQsMTJoMXYxaC0xejc4aDF2MWgtMXpNNiwxMmgxdjFoLTF6TTQsMTNoMXYxaC0xejc4aDF2MWgtMXpNNiwxM2gxdjFoLTF6TTUsNWgxdjFoLTF6TTUsNmgxdjFoLTF6TTUsN2gxdjFoLTF6TTUsOGgxdjFoLTF6TTUsOWgxdjFoLTF6TTUsMTBoMXYxaC0xejc4aDF2MWgtMXpNNiw1aDF2MWgtMXpNNiw2aDF2MWgtMXpNNiw3aDF2MWgtMXpNNiw4aDF2MWgtMXpNNiw5aDF2MWgtMXpNNiwxMGgxdjFoLTF6TTUsMTFoMXYxaC0xejc4aDF2MWgtMXpNNiwxMWgxdjFoLTF6TTYsNmgxdjFoLTF6TTYsN2gxdjFoLTF6TTYsOGgxdjFoLTF6TTYsOWgxdjFoLTF6TTYsMTBoMXYxaC0xejc4aDF2MWgtMXpNNiw2aDF2MWgtMXpNNiw3aDF2MWgtMXpNNiw4aDF2MWgtMXpNNiw5aDF2MWgtMXpNNiwxMGgxdjFoLTF6TTYsMTFoMXYxaC0xejc4aDF2MWgtMXpNNiwxMWgxdjFoLTF6TTcsN2gxdjFoLTF6TTcsOGgxdjFoLTF6TTgsOGgxdjFoLTF6IiIvPjwvc3ZnPg==")
+      0 0,
+    auto;
+  overflow: hidden; /* Prevent scrolling on main body */
+  touch-action: none; /* Disable all default touch actions (scroll/zoom) */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* push footer down */
+  height: 100vh;
+  width: 100%;
+  /* Use safe area inset for notch/island + extra padding. 
+     Increased base to 60px to ensure it clears heavy notches if env fails or is small 
+  */
+  padding-top: max(60px, env(safe-area-inset-top) + 20px);
+  padding-bottom: 20px;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1; /* Take available space */
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 20px; /* Increased gap from 10px */
+  margin-top: 25px; /* Increased top margin */
+}
+
+/* Retro Button Styles */
+button,
+.changeGridNumber {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 0 15px;
+  height: 50px;
+  border: 2px solid var(--btn-border); /* Thicker border */
+  font-weight: normal;
+  font-family: "VT323", monospace;
+  font-size: 24px; /* Larger Retro Font */
+  text-transform: uppercase;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0; /* SHARP CORNERS */
+  cursor: pointer;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1); /* Hard Shadow */
+  transition: transform 0.1s, box-shadow 0.1s;
+  touch-action: manipulation; /* Allow touch on buttons despite body touch-action: none */
+}
+
+button:hover,
+.changeGridNumber:hover {
+  background-color: var(--btn-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 1);
+}
+
+button:active,
+.changeGridNumber:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  background-color: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+/* Tweak font size for small screens */
+@media screen and (max-width: 400px) {
+  button,
+  .changeGridNumber {
+    font-size: 20px;
+    padding: 0 8px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  color: var(--text-main);
+  font-weight: bold;
+  font-size: 40px; /* Larger title */
+  letter-spacing: 2px;
+  width: 100%;
+  padding: 5px 20px;
+  display: flex; /* Flexbox for alignment */
+  align-items: center;
+  justify-content: center; /* Center the title */
+  position: relative; /* For absolute positioning of children */
+  z-index: 10;
+}
+
+.title-text {
+  /* Ensure title stays centered even with side buttons */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  /* BOLDER & EYE-CATCHING VIBE */
+  font-size: 52px; /* Bigger */
+  -webkit-text-stroke: 2px var(--text-main); /* Thicker stroke */
+  /* Sharper, harder shadow for more retro vibe */
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+  white-space: nowrap;
+  letter-spacing: 5px; /* More spacing for the bold look */
+}
+
+#undoBtn {
+  background-color: var(--btn-bg);
+  border: 2px solid var(--btn-border);
+  color: var(--btn-text);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 0;
+  transition: transform 0.1s, box-shadow 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  appearance: none;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  position: absolute;
+  left: 10px;
+  top: 15px; /* Lower down to avoid status bar interference */
+}
+
+#undoBtn:hover {
+  background-color: var(--btn-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 1);
+  border: 2px solid var(--btn-border);
+}
+
+#undoBtn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  background-color: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+#undoBtn svg {
+  width: 24px;
+  height: 24px;
+  filter: none;
+}
+
+#saveDraftBtn {
+  position: absolute;
+  /* Safe area aware right margin */
+  right: max(10px, env(safe-area-inset-right) + 10px);
+  top: 15px;
+  height: 44px;
+  padding: 0 15px;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  font-size: 20px;
+  margin: 0;
+}
+
+#openSavedBtn {
+  display: none; /* Hidden by default, specifically enabled for Mobile Portrait */
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--btn-bg);
+  border: 2px solid var(--btn-border);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  color: var(--btn-text);
+  z-index: 100;
+}
+
+#openSavedBtn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  background-color: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+/* Saved Modal (Mobile Full Screen) */
+.saved-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-main);
+  z-index: 5000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  transition: transform 0.3s ease;
+  transform: translateY(100%); /* Slide form bottom */
+}
+
+.saved-modal.active {
+  transform: translateY(0);
+}
+
+.saved-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 4px solid #000;
+  padding-bottom: 10px;
+  font-size: 32px;
+}
+
+.close-saved-btn {
+  background: #ff5555;
+  color: white;
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+}
+
+.saved-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 15px;
+  overflow-y: auto;
+  padding-bottom: 50px;
+  touch-action: pan-y; /* Enable vertical scroll */
+  -webkit-overflow-scrolling: touch; /* Momentum scroll */
+}
+
+/* Helper to hide Elements */
+.hidden {
+  display: none !important;
+}
+
+/* Mobile Portrait: Hide inline sidebar, show button */
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .saved-sidebar {
+    display: none !important;
+  }
+
+  /* Move Saved Button to Bottom Left (Fixed) */
+  #openSavedBtn {
+    display: flex !important; /* Force show */
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: max(20px, calc(env(safe-area-inset-bottom) + 20px));
+    left: 20px;
+    z-index: 1000;
+  }
+
+  /* Ensure Grid doesn't hit the Header */
+  .header {
+    margin-bottom: 30px;
+  }
+}
+
+/* Landscape: Hide Folder Button, Show Sidebar */
+@media screen and (orientation: landscape) {
+  #openSavedBtn {
+    display: none;
+  }
+  .saved-modal {
+    display: none; /* Never show modal in landscape, use sidebar */
+  }
+  .saved-sidebar {
+    display: flex !important; /* Force show */
+  }
+}
+
+.container {
+  display: flex;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 1); /* Hard Retro Shadow */
+  border: 2px solid #000;
+  background-color: var(--bg-container); /* Light background for grid area */
+
+  /* Responsive sizing - FITS AVAILABLE SPACE WITHOUT OVERFLOW */
+  width: 82vmin; /* Use vmin to never exceed viewport */
+  height: 82vmin;
+
+  flex-wrap: wrap;
+  margin: 0 auto 10px auto;
+  touch-action: none;
+}
+
+.cell {
+  border: 1px dotted var(--border-cell); /* Dotted grid lines are very retro */
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.cell:hover {
+  background-color: rgb(107, 107, 107);
+}
+
+.tools {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+}
+
+/* Remove old grid styles */
+
+#eraserBtn {
+  margin-top: 0;
+}
+
+#eraserBtn.active {
+  background-color: var(--btn-active-bg);
+  color: var(--btn-active-text);
+  box-shadow: inset 3px 3px 0px rgba(255, 255, 255, 0.3);
+}
+
+#resetBtn {
+  margin-top: 0;
+  width: auto; /* Reset specific width */
+  border-color: #000;
+  padding: 0 15px; /* Match other buttons */
+}
+
+#resetBtn:hover {
+  background-color: #ff5555;
+  color: white;
+  border-color: #000;
+}
+
+#colorPicker {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 54px; /* Match button height approx w/ borders */
+  height: 54px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+#colorPicker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#colorPicker::-webkit-color-swatch {
+  /* Match buttons */
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+}
+
+#colorPicker::-moz-color-swatch {
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+}
+
+.footer {
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* Wrapper for Drawing Area */
+.drawing-board {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+/* Saved Sidebar - Base (Portrait) */
+.saved-sidebar {
+  width: 90%;
+  height: 100px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row; /* Horizontal scroll */
+  gap: 10px;
+  overflow-x: auto;
+  padding: 5px;
+  border: 2px solid var(--btn-border);
+  background: var(--bg-container);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+}
+
+.saved-list {
+  display: flex;
+  gap: 10px;
+}
+
+.saved-item {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--btn-border);
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transition: transform 0.1s;
+}
+.saved-item:hover {
+  transform: scale(1.05);
+}
+.saved-item img {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+.saved-item .delete-save {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ff5555;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--btn-border);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 26px;
+  font-size: 20px;
+  display: block; /* Always visible for mobile access */
+  z-index: 5;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.saved-item:hover .delete-save {
+  background: red;
+  transform: scale(1.1);
+}
+
+/* Landscape Mode (Mobile & Tablet) - Side by Side Layout with CENTERED Grid */
+@media screen and (orientation: landscape) {
+  .content-wrapper {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: 10px;
+    position: relative; /* Context reference */
+  }
+
+  .game-area {
+    display: flex;
+    flex-direction: row; /* Side by Side */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    position: relative;
+  }
+
+  .drawing-board {
+    height: 100%;
+    /* Ensure content is centered */
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Tools positioning relative to drawing-board */
+  .tools {
+    position: absolute;
+    /* Calculated placement: 50% (Center) + 40vmin (Half Grid) + 20px (Gap) */
+    /* This puts the tools to the LEFT of the centered grid */
+    right: calc(50% + 40vmin + 20px);
+    left: auto; /* Unset the previous left pinning */
+    top: 50%;
+    transform: translateY(-50%); /* Vertical Center */
+
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0;
+    gap: 15px;
+    z-index: 20; /* Ensure above anything */
+  }
+
+  /* Absolute Sidebar to keep Grid centered strictly */
+  .saved-sidebar {
+    position: absolute;
+    right: max(
+      30px,
+      env(safe-area-inset-right) + 30px
+    ); /* Respect Notch/Dynamic Island */
+    top: 50%;
+    transform: translateY(-50%); /* Center Vertically */
+
+    width: 120px;
+    max-height: 80vh; /* Don't touch edges */
+    height: auto;
+
+    flex-direction: column; /* Vertical list */
+    align-items: center; /* Center previews */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: var(--bg-container);
+    margin: 0;
+    z-index: 500; /* Ensure on top of everything */
+
+    /* Enhance floating look */
+    border-radius: 0;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  }
+
+  .saved-list {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .saved-item {
+    margin: 5px 0;
+  }
+
+  /* The Grid Container */
+  .container {
+    margin: 0 auto; /* Dead Center */
+    /* Fit nicely in landscape height */
+    width: 80vmin;
+    height: 80vmin;
+    flex-shrink: 0;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
+  }
+}
+
+/* Theme Modal */
+.theme-modal {
+  display: block; /* Always block, controlled by opacity/visibility */
+  visibility: hidden;
+  position: fixed;
+  z-index: 1000; /* High z-index to sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(2px); /* Slight blur for modern-retro feel */
+}
+
+.theme-modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--bg-container);
+  /* Add safe area inset for dynamic island/notch */
+  margin: max(5%, env(safe-area-inset-top) + 10px) auto 5% auto;
+  padding: 20px;
+  border: 2px solid var(--btn-border);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 0;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 1);
+
+  /* Animation Start State */
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.2s ease;
+}
+
+.theme-modal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.close {
+  color: #000;
+  float: right;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+.close:hover,
+.close:focus {
+  color: #ff5555;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Remove old single grid setup, now handled by .theme-grid-container */
+.theme-presets {
+  margin-bottom: 20px;
+}
+
+.theme-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px; /* Spacing for buttons */
+  margin-bottom: 20px;
+  padding: 10px; /* Internal padding */
+}
+
+.theme-section-header {
+  color: var(--text-main);
+  margin: 15px 0 15px 0;
+  font-size: 24px;
+  opacity: 1;
+  border-bottom: 4px solid #000; /* Heavier underline */
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.theme-card {
+  background-color: var(--bg-container);
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.1s ease;
+  position: relative; /* For actions */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1); /* Pop them out */
+  margin: 5px; /* Extra margin around cards */
+}
+
+.theme-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  background-color: #fff;
+  z-index: 2;
+}
+
+.theme-card.active {
+  border-color: #000;
+  box-shadow: inset 0 0 0 2px #000, 4px 4px 0px rgba(0, 0, 0, 1); /* Inner border to show activity */
+  background-color: #fff;
+}
+
+.card-actions {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: 5px;
+  border-top: 1px dotted rgba(0, 0, 0, 0.2);
+  padding-top: 5px;
+}
+
+.card-actions button {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font-size: 16px;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.card-actions button:hover {
+  opacity: 1;
+  background: none;
+  transform: scale(1.2);
+  box-shadow: none;
+}
+
+.card-actions button.delete-btn:hover {
+  color: #ff5555;
+}
+
+.theme-preview {
+  display: flex;
+  gap: 0; /* Tight */
+  width: 100%;
+  height: 40px;
+  border-radius: 0;
+  border: 2px solid #000;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.theme-preview div {
+  flex: 1;
+  height: 100%;
+}
+
+.theme-card span {
+  font-size: 18px; /* Bigger text */
+  font-weight: normal;
+  color: var(--text-main);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.custom-theme-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.custom-theme-inputs label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+/* Export Floating Button */
+.export-container {
+  position: fixed;
+  bottom: 130px; /* Raised to avoid Saved Sidebar */
+  right: max(20px, env(safe-area-inset-right) + 20px);
+  z-index: 550; /* Above sidebar */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Mobile Portrait: Lower Export Button + Safe Area + Scroll Space */
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .export-container {
+    /* Sit above the home indicator + 20px margin */
+    bottom: max(20px, calc(env(safe-area-inset-bottom) + 20px));
+  }
+
+  .content-wrapper {
+    /* Ensure content scroll clears the floating button */
+    padding-bottom: 120px;
+  }
+}
+
+/* ... existing floating-btn styles ... */
+
+/* Mobile Portrait: Floating Cell Count Bar */
+/* --- GLOBAL CELL COUNT MODAL --- */
+.cell-count-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 320px;
+  background: var(--bg-container);
+  border: 4px solid #000;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 1); /* Deep Retro Shadow */
+  z-index: 10000; /* Always on top */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: modalPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cell-count-modal.hidden {
+  display: none !important;
+}
+
+@keyframes modalPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  font-size: 32px;
+  text-transform: uppercase;
+  border-bottom: 4px solid #000;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.modal-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #000;
+  outline: none;
+  margin: 10px 0;
+}
+
+.modal-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background: var(--btn-bg);
+  border: 2px solid #000;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.cell-count-modal input[type="number"] {
+  flex: 1;
+  height: 50px;
+  font-size: 32px;
+  font-family: "VT323", monospace;
+  text-align: center;
+  border: 2px solid #000;
+  background: #fff;
+}
+
+.cell-count-modal button {
+  flex: 1;
+  height: 50px;
+  font-size: 24px;
+  margin: 0;
+}
+
+.close-modal-btn {
+  width: 100%;
+  background: #ff5555 !important;
+  color: white !important;
+}
+
+/* Landscape: "Push" Layout behavior for Cell Count */
+@media screen and (orientation: landscape) {
+  /* Reset Fixed Modal styles to be an Inline-ish Panel */
+  .cell-count-modal {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Position: Next to the Centered Grid */
+    /* Grid Left Edge ~= 50% - 40vmin */
+    /* Place Panel 15px to left of Grid */
+    left: auto;
+    right: calc(50% + 40vmin + 15px);
+    width: 100px; /* Slimmer */
+    height: auto;
+    max-width: none;
+    background: var(--bg-container);
+    border: 2px solid var(--btn-border);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+    z-index: 100 !important;
+    padding: 20px 10px; /* More vertical padding */
+    animation: none;
+
+    /* Layout inside the panel */
+    flex-direction: column;
+    gap: 15px; /* More gap */
+    align-items: center; /* Center everything */
+  }
+
+  /* When hidden, it actually disappears (handled by base .hidden) */
+  .cell-count-modal.hidden {
+    display: none !important;
+  }
+
+  .modal-slider {
+    /* Vertical Slider in Landscape */
+    transform: rotate(-90deg);
+    width: 100px;
+    height: 10px;
+    margin: 60px 0; /* More Space for rotation */
+  }
+
+  .input-row {
+    flex-direction: column;
+    width: 100%;
+    align-items: center; /* Center input */
+    gap: 5px;
+  }
+
+  .cell-count-modal input[type="number"] {
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+    text-align: center; /* Explicit center */
+  }
+
+  .cell-count-modal button {
+    height: 30px; /* Smaller button */
+    font-size: 16px;
+    width: 100%;
+    line-height: 26px; /* Center text vertical */
+  }
+
+  .modal-header {
+    font-size: 18px; /* Smaller text */
+    border-bottom: 2px solid;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* TOOLS Animation - The "Push" Effect */
+  .tools {
+    transition: right 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Default pos: 20px from Grid */
+    right: calc(50% + 40vmin + 20px);
+    z-index: 90;
+  }
+
+  /* When Panel is OPEN, move Tools further left */
+  body.cell-panel-open .tools {
+    /* Move left by Panel Width (100px) + Gap (15px) */
+    right: calc(50% + 40vmin + 20px + 100px + 15px);
+  }
+}
+
+#openSavedBtn svg {
+  pointer-events: none; /* Ensure clicks pass to button */
+}
+
+.floating-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 2px solid var(--btn-border);
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.floating-btn:hover {
+  background-color: var(--btn-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
+}
+
+.floating-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  background-color: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+.export-menu {
+  background-color: var(--bg-container);
+  border: 2px solid var(--btn-border);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+  margin-bottom: 5px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.export-menu.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.export-menu button {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 20px;
+  text-align: left;
+  justify-content: flex-start;
+  height: auto;
+  min-width: 200px;
+}
+
+/* Cell Count Inline Panel */
+@keyframes jiggle {
+  0% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+
+.edit-mode .saved-item {
+  animation: jiggle 0.2s infinite linear;
+  border-color: red;
+}
+
+.edit-mode .saved-item .delete-save {
+  display: block;
+  transform: scale(1.2);
+}
+
+.cell-panel-content input[type="number"] {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
+  font-family: "VT323", monospace;
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  background: var(--bg-cell);
+  color: var(--text-main);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.cell-panel-content input[type="number"]:focus {
+  outline: none;
+  border-color: var(--btn-active-bg);
+}
+
+.cell-panel-content button {
+  padding: 5px 15px;
+  height: auto;
+  font-size: 20px;
+}
+
+/* Vertical Slider - Retro Style */
+.vertical-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 10px;
+  background: var(--bg-cell);
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.2);
+
+  /* Rotate to make vertical */
+  transform: rotate(-90deg);
+  transform-origin: center;
+  margin: 50px 0;
+}
+
+.vertical-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--btn-bg);
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.vertical-slider::-webkit-slider-thumb:hover {
+  background: var(--btn-hover);
+}
+
+.vertical-slider::-webkit-slider-thumb:active {
+  background: var(--btn-active-bg);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
+}
+
+.vertical-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--btn-bg);
+  border: 2px solid var(--btn-border);
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+}
+/* Hiding Number Input Arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
