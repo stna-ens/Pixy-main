@@ -2016,9 +2016,114 @@ input[type="number"] {
   margin-bottom: 10px;
 }
 
+.license-restore {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.retro-input {
+  font-family: "VT323", monospace;
+  font-size: 16px;
+  padding: 8px 12px;
+  border: 2px solid var(--text-main);
+  background: var(--bg-cell);
+  color: var(--text-main);
+  flex: 1;
+  max-width: 260px;
+}
+
+.retro-input::placeholder {
+  opacity: 0.5;
+}
+
 .paywall-footer {
   font-size: 14px;
   opacity: 0.6;
+}
+
+/* Ad containers */
+.ad-container {
+  text-align: center;
+  min-height: 50px;
+  overflow: hidden;
+}
+
+@media screen and (max-height: 600px) {
+  #ad-footer-container {
+    display: none;
+  }
+}
+
+/* Interstitial overlay */
+.ad-interstitial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.ad-interstitial-content {
+  text-align: center;
+  color: var(--text-main, #fff);
+  font-family: "VT323", monospace;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.ad-interstitial-label {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.ad-interstitial-slot {
+  min-height: 250px;
+  min-width: 300px;
+  margin: 0 auto 16px;
+}
+
+.ad-interstitial-skip {
+  font-family: "VT323", monospace;
+  font-size: 18px;
+  padding: 10px 24px;
+  border: 2px solid var(--text-main, #fff);
+  background: transparent;
+  color: var(--text-main, #fff);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.ad-interstitial-skip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ad-interstitial-upgrade {
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* Pro badge in export menu */
+.pro-badge-inline {
+  font-size: 10px;
+  background: var(--text-main, #fff);
+  color: var(--bg-cell, #000);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-left: 4px;
+  vertical-align: middle;
 }
 
 .close-paywall {

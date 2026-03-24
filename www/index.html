@@ -22,6 +22,12 @@
 
       gtag("config", "G-QMZCGGSZX3");
     </script>
+    <!-- Google AdSense — REPLACE ca-pub-XXXXXXX WITH YOUR REAL PUBLISHER ID -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXX"
+      crossorigin="anonymous"
+    ></script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -234,6 +240,15 @@
         </div>
       </div>
       <div class="footer">
+        <div id="ad-footer-container" class="ad-container">
+          <!-- REPLACE data-ad-client and data-ad-slot WITH YOUR REAL VALUES -->
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-XXXXXXX"
+            data-ad-slot="XXXXXXX"
+            data-ad-format="horizontal"
+            data-full-width-responsive="true"></ins>
+        </div>
         <p>Made By ST&A</p>
       </div>
     </div>
@@ -246,6 +261,14 @@
       </div>
       <div id="mobileSavedList" class="saved-list-grid">
         <!-- JS will populate this -->
+      </div>
+      <div id="ad-saved-container" class="ad-container">
+        <!-- REPLACE data-ad-client and data-ad-slot WITH YOUR REAL VALUES -->
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-XXXXXXX"
+          data-ad-slot="XXXXXXX"
+          data-ad-format="rectangle"></ins>
       </div>
     </div>
 
@@ -372,6 +395,7 @@
         <button id="exportProjectBtn">Export Project</button>
         <button id="exportStickerBtn">Export Sticker</button>
         <button id="exportPngBtn">Export PNG</button>
+        <button id="exportHdBtn" class="pro-export-btn">Export HD PNG <span class="pro-badge-inline">PRO</span></button>
       </div>
       <button id="exportMainBtn" class="floating-btn" title="Export">
         <svg
@@ -495,7 +519,7 @@
       </svg>
     </button>
 
-    <!-- RevenueCat Paywall Modal -->
+    <!-- Pro Paywall Modal -->
     <div id="paywallModal" class="theme-modal">
       <div class="modal-content paywall-content">
         <span class="close-paywall">&times;</span>
@@ -516,27 +540,38 @@
             </div>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">❤️</span>
+            <span class="feature-icon">📐</span>
             <div class="feature-text">
-              <strong>Support Indie Dev</strong>
-              <p>Help keep Pixy ad-free and updated.</p>
+              <strong>HD Export & Large Canvas</strong>
+              <p>Export up to 8x resolution. Canvas up to 256x256.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🚫</span>
+            <div class="feature-text">
+              <strong>No Ads</strong>
+              <p>Remove all ads for a clean workspace.</p>
             </div>
           </div>
         </div>
         <div class="paywall-actions">
+          <button id="purchaseLifetimeBtn" class="paywall-btn highlight">
+            <span>Lifetime Access</span>
+            <span>$7.99</span>
+          </button>
           <button id="purchaseMonthlyBtn" class="paywall-btn">
             <span>Monthly</span>
-            <span id="priceMonthly">...</span>
-          </button>
-          <button id="purchaseYearlyBtn" class="paywall-btn highlight">
-            <span>Yearly (Best Value)</span>
-            <span id="priceYearly">...</span>
+            <span>$2.99/mo</span>
           </button>
         </div>
+        <div class="license-restore">
+          <input type="text" id="licenseKeyInput" placeholder="Enter license key..." class="retro-input" />
+          <button id="activateLicenseBtn" class="restore-btn">Activate</button>
+        </div>
         <button id="restorePurchasesBtn" class="restore-btn">
-          Restore Purchases
+          Already purchased? Enter your license key above.
         </button>
-        <p class="paywall-footer">Recurring billing. Cancel anytime.</p>
+        <p class="paywall-footer">One-time purchase. Yours forever.</p>
       </div>
     </div>
 

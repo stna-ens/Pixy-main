@@ -26,16 +26,26 @@ let container = null;
 let bgCanvas = null; // Dedicated canvas for grid lines and background color
 let bgCtx = null;
 
-// RevenueCat State
+// Pro State
 let isProUser = false;
+const LICENSE_KEY_STORAGE = "pixy_license_key";
+const LICENSE_VALIDATED_STORAGE = "pixy_license_validated";
+const OFFLINE_GRACE_DAYS = 7;
+
+// LemonSqueezy Config — REPLACE WITH REAL IDs FROM YOUR LEMONSQUEEZY DASHBOARD
+const LEMON_CHECKOUT_LIFETIME = "https://pixystudio.lemonsqueezy.com/checkout/buy/0dba630b-5f1d-4215-85dc-b9f927f2d5bd";
+const LEMON_CHECKOUT_MONTHLY = "https://pixystudio.lemonsqueezy.com/checkout/buy/64c0ba55-ae8f-40c8-a4ca-be8b909b7cde";
+
+// RevenueCat (Mobile only)
 const ENTITLEMENT_ID = "pro_access";
-const API_KEY_IOS = "appl_PLACEHOLDER_KEY"; // REPLACE WITH REAL KEY
-const API_KEY_ANDROID = "goog_PLACEHOLDER_KEY"; // REPLACE WITH REAL KEY
+const API_KEY_IOS = "appl_PLACEHOLDER_KEY";
+const API_KEY_ANDROID = "goog_PLACEHOLDER_KEY";
 
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
   initApp();
-  initRevenueCat(); // Start RC
+  initPaymentSystem();
+  initAds();
 });
 
 function initApp() {
@@ -125,7 +135,16 @@ function updateCachedColor() {
 function createGrid(size) {
   gridCount = parseInt(size);
   if (gridCount < 1) gridCount = 1;
-  if (gridCount > 100) gridCount = 100;
+
+  const maxSize = isProUser ? 256 : 64;
+  if (gridCount > maxSize) {
+    if (!isProUser) {
+      showPaywall("Canvas sizes above 64x64 require Pro");
+      gridCount = 64;
+    } else {
+      gridCount = 256;
+    }
+  }
   window.currentGridNumber = gridCount;
 
   // Reset System
@@ -883,18 +902,121 @@ function applyTheme(themeObj) {
   refreshThemeColors();
 }
 
-// --- REVENUECAT LOGIC ---
+// --- PAYMENT SYSTEM ---
 
-async function initRevenueCat() {
+async function initPaymentSystem() {
+  // Mobile: use RevenueCat
   if (
-    !window.Capacitor ||
-    !window.Capacitor.Plugins ||
-    !window.Capacitor.Plugins.Purchases
+    window.Capacitor?.Plugins?.Purchases
   ) {
-    console.warn("RevenueCat plugin not found (Web Mode?)");
+    initRevenueCat();
     return;
   }
 
+  // Web: use LemonSqueezy license key
+  const storedKey = localStorage.getItem(LICENSE_KEY_STORAGE);
+  if (storedKey) {
+    await validateLicense(storedKey);
+  }
+
+  // Load LemonSqueezy.js for overlay checkout
+  if (!document.getElementById("lemonsqueezy-js")) {
+    const script = document.createElement("script");
+    script.id = "lemonsqueezy-js";
+    script.src = "https://app.lemonsqueezy.com/js/lemon.js";
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  // Wire up web paywall buttons
+  document.getElementById("purchaseLifetimeBtn")?.addEventListener("click", () => {
+    trackEvent("checkout_started", { plan: "lifetime" });
+    openCheckout(LEMON_CHECKOUT_LIFETIME);
+  });
+
+  document.getElementById("purchaseMonthlyBtn")?.addEventListener("click", () => {
+    trackEvent("checkout_started", { plan: "monthly" });
+    openCheckout(LEMON_CHECKOUT_MONTHLY);
+  });
+
+  document.getElementById("activateLicenseBtn")?.addEventListener("click", async () => {
+    const input = document.getElementById("licenseKeyInput");
+    const key = input?.value?.trim();
+    if (!key) {
+      alert("Please enter your license key.");
+      return;
+    }
+    await validateLicense(key);
+    if (isProUser) {
+      alert("Pro activated! Enjoy Pixy Pro.");
+    } else {
+      alert("Invalid or expired license key.");
+    }
+  });
+}
+
+async function validateLicense(key) {
+  try {
+    const resp = await fetch("/api/validate-license", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ license_key: key }),
+    });
+    const data = await resp.json();
+
+    if (data.valid) {
+      isProUser = true;
+      localStorage.setItem(LICENSE_KEY_STORAGE, key);
+      localStorage.setItem(LICENSE_VALIDATED_STORAGE, String(Date.now()));
+      updateProUI();
+      hideAllAds();
+      trackEvent("purchase_completed", { method: "license_key" });
+    } else {
+      localStorage.removeItem(LICENSE_KEY_STORAGE);
+      localStorage.removeItem(LICENSE_VALIDATED_STORAGE);
+      isProUser = false;
+      updateProUI();
+    }
+  } catch {
+    // Offline fallback: trust cached key within grace period
+    const lastValidated = localStorage.getItem(LICENSE_VALIDATED_STORAGE);
+    if (
+      lastValidated &&
+      Date.now() - parseInt(lastValidated) < OFFLINE_GRACE_DAYS * 24 * 60 * 60 * 1000
+    ) {
+      isProUser = true;
+      updateProUI();
+      hideAllAds();
+    }
+  }
+}
+
+function openCheckout(checkoutUrl) {
+  // LemonSqueezy overlay checkout (stays on your domain)
+  if (window.createLemonSqueezy) {
+    window.createLemonSqueezy();
+  }
+  if (window.LemonSqueezy?.Url?.Open) {
+    window.LemonSqueezy.Url.Open(checkoutUrl + "?embed=1");
+  } else {
+    // Fallback: open in new tab
+    window.open(checkoutUrl, "_blank");
+  }
+}
+
+// Listen for LemonSqueezy checkout success (postMessage from overlay)
+window.addEventListener("message", (event) => {
+  if (event.data?.event === "Checkout.Success") {
+    const licenseKey = event.data?.data?.order?.first_order_item?.license_key;
+    if (licenseKey) {
+      validateLicense(licenseKey);
+    }
+  }
+});
+
+// --- REVENUECAT (MOBILE ONLY) ---
+
+async function initRevenueCat() {
   const { Purchases } = window.Capacitor.Plugins;
 
   try {
@@ -910,7 +1032,6 @@ async function initRevenueCat() {
       await checkProStatus();
     }
 
-    // Listen for updates
     Purchases.addListener("purchasesReceived", (info) => {
       handleCustomerInfo(info.customerInfo);
     });
@@ -932,9 +1053,11 @@ async function checkProStatus() {
 function handleCustomerInfo(customerInfo) {
   const entitlements = customerInfo.entitlements.active;
   isProUser = !!entitlements[ENTITLEMENT_ID];
-
   updateProUI();
+  if (isProUser) hideAllAds();
 }
+
+// --- PRO UI ---
 
 function updateProUI() {
   const badge = document.getElementById("proBadge");
@@ -949,78 +1072,134 @@ function updateProUI() {
   }
 }
 
-// Paywall UI Logic
 function showPaywall(msg) {
   const modal = document.getElementById("paywallModal");
   modal.classList.add("show");
-  if (msg) document.querySelector(".paywall-title").innerText = msg; // Dynamic title
-
-  loadOfferings();
-}
-
-async function loadOfferings() {
-  try {
-    const { Purchases } = window.Capacitor.Plugins;
-    const offerings = await Purchases.getOfferings();
-
-    if (offerings.current) {
-      const monthly = offerings.current.monthly;
-      const yearly = offerings.current.annual;
-
-      if (monthly) {
-        document.getElementById("priceMonthly").innerText =
-          monthly.product.priceString;
-        document.getElementById("purchaseMonthlyBtn").onclick = () =>
-          purchasePackage(monthly);
-      }
-      if (yearly) {
-        document.getElementById("priceYearly").innerText =
-          yearly.product.priceString;
-        document.getElementById("purchaseYearlyBtn").onclick = () =>
-          purchasePackage(yearly);
-      }
-    }
-  } catch (e) {
-    console.error("Error loading offerings", e);
-  }
-}
-
-async function purchasePackage(rcPackage) {
-  try {
-    const { Purchases } = window.Capacitor.Plugins;
-    const { customerInfo } = await Purchases.purchasePackage({
-      package: rcPackage,
-    });
-    handleCustomerInfo(customerInfo);
-  } catch (e) {
-    if (!e.userCancelled) {
-      alert("Purchase failed: " + e.message);
-    }
-  }
+  if (msg) document.querySelector(".paywall-title").innerText = msg;
+  trackEvent("paywall_shown", { trigger: msg || "unknown" });
 }
 
 document.querySelector(".close-paywall")?.addEventListener("click", () => {
   document.getElementById("paywallModal").classList.remove("show");
+  trackEvent("paywall_dismissed");
 });
 
 document
   .getElementById("restorePurchasesBtn")
   ?.addEventListener("click", async () => {
-    try {
-      const { Purchases } = window.Capacitor.Plugins;
-      const { customerInfo } = await Purchases.restorePurchases();
-      handleCustomerInfo(customerInfo);
+    // Mobile: RevenueCat restore
+    if (window.Capacitor?.Plugins?.Purchases) {
+      try {
+        const { Purchases } = window.Capacitor.Plugins;
+        const { customerInfo } = await Purchases.restorePurchases();
+        handleCustomerInfo(customerInfo);
 
-      if (customerInfo.entitlements.active[ENTITLEMENT_ID]) {
-        alert("Purchases restored!");
-        updateProUI();
-      } else {
-        alert("No Pro subscription found.");
+        if (customerInfo.entitlements.active[ENTITLEMENT_ID]) {
+          alert("Purchases restored!");
+        } else {
+          alert("No Pro subscription found.");
+        }
+      } catch (e) {
+        alert("Restore failed: " + e.message);
       }
-    } catch (e) {
-      alert("Restore failed: " + e.message);
     }
   });
+
+// --- ADS MANAGEMENT ---
+
+function initAds() {
+  if (isProUser) {
+    hideAllAds();
+    return;
+  }
+
+  try {
+    const adUnits = document.querySelectorAll(".adsbygoogle");
+    adUnits.forEach(() => {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    });
+    trackEvent("ad_impression");
+  } catch (e) {
+    console.warn("Ad init failed", e);
+  }
+}
+
+function hideAllAds() {
+  document.querySelectorAll(".ad-container").forEach((el) => {
+    el.style.display = "none";
+  });
+}
+
+function showExportInterstitial(callback) {
+  if (isProUser) {
+    callback();
+    return;
+  }
+
+  let exportCount = parseInt(localStorage.getItem("pixy_export_count") || "0");
+  exportCount++;
+  localStorage.setItem("pixy_export_count", String(exportCount));
+
+  // Show interstitial every 3rd export
+  if (exportCount % 3 !== 0) {
+    callback();
+    return;
+  }
+
+  // Create overlay
+  const overlay = document.createElement("div");
+  overlay.className = "ad-interstitial-overlay";
+  overlay.innerHTML = `
+    <div class="ad-interstitial-content">
+      <p class="ad-interstitial-label">Your download will begin shortly...</p>
+      <div class="ad-interstitial-slot">
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-XXXXXXX"
+          data-ad-slot="XXXXXXX"
+          data-ad-format="rectangle"></ins>
+      </div>
+      <button class="ad-interstitial-skip" id="adSkipBtn" disabled>Skip in <span id="adCountdown">5</span>s</button>
+      <p class="ad-interstitial-upgrade" onclick="showPaywall('Remove ads with Pixy Pro')">or upgrade to Pro</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {
+    console.warn("Interstitial ad failed", e);
+  }
+
+  let countdown = 5;
+  const countdownEl = overlay.querySelector("#adCountdown");
+  const skipBtn = overlay.querySelector("#adSkipBtn");
+
+  const timer = setInterval(() => {
+    countdown--;
+    if (countdownEl) countdownEl.textContent = countdown;
+    if (countdown <= 0) {
+      clearInterval(timer);
+      skipBtn.disabled = false;
+      skipBtn.textContent = "Continue";
+    }
+  }, 1000);
+
+  skipBtn.addEventListener("click", () => {
+    overlay.remove();
+    callback();
+  });
+
+  trackEvent("ad_impression", { type: "interstitial" });
+}
+
+// --- ANALYTICS ---
+
+function trackEvent(eventName, params) {
+  if (typeof gtag === "function") {
+    gtag("event", eventName, params);
+  }
+}
 
 // --- HELPER FUNCS ---
 
@@ -1063,9 +1242,27 @@ function parseColorString(colorStr) {
 
 // --- EXPORT ---
 
-function exportCanvas(isTransparent, isClipboard) {
+function showHdExportDialog() {
+  const overlay = document.createElement("div");
+  overlay.className = "ad-interstitial-overlay";
+  overlay.innerHTML = `
+    <div class="ad-interstitial-content" style="max-width:300px">
+      <h3 style="margin:0 0 12px;font-family:'VT323',monospace;font-size:24px">HD EXPORT</h3>
+      <p style="font-size:14px;opacity:0.7;margin:0 0 16px">Choose export resolution:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;width:100%">
+        <button class="paywall-btn" onclick="this.closest('.ad-interstitial-overlay').remove();exportCanvas(false,false,2)">2x (${gridCount*2}px)</button>
+        <button class="paywall-btn" onclick="this.closest('.ad-interstitial-overlay').remove();exportCanvas(false,false,4)">4x (${gridCount*4}px)</button>
+        <button class="paywall-btn highlight" onclick="this.closest('.ad-interstitial-overlay').remove();exportCanvas(false,false,8)">8x (${gridCount*8}px)</button>
+        <button class="restore-btn" onclick="this.closest('.ad-interstitial-overlay').remove()">Cancel</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function exportCanvas(isTransparent, isClipboard, scale) {
   const canvas = document.createElement("canvas");
-  const size = 1048;
+  const size = scale ? gridCount * scale : 1048;
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext("2d");
@@ -1839,6 +2036,7 @@ const defaultThemes = {
   synthwave: {
     name: "Synthwave '84",
     id: "synthwave",
+    isPremium: true,
     colors: {
       "--bg-main": "#2b213a",
       "--bg-container": "#241b2f",
@@ -2001,6 +2199,7 @@ const defaultThemes = {
   cyberpunk: {
     name: "Cyberpunk",
     id: "cyberpunk",
+    isPremium: true,
     colors: {
       "--bg-main": "#fceeb5",
       "--bg-container": "#000b1e",
@@ -2344,6 +2543,7 @@ const defaultThemes = {
   pacman: {
     name: "Pac-Man",
     id: "pacman",
+    isPremium: true,
     colors: {
       "--bg-main": "#000000",
       "--bg-container": "#21177d",
@@ -2470,6 +2670,7 @@ const defaultThemes = {
   neonNights: {
     name: "Neon Nights",
     id: "neonNights",
+    isPremium: true,
     colors: {
       "--bg-main": "#0f0f1a",
       "--bg-container": "#1a1a2e",
@@ -2488,6 +2689,7 @@ const defaultThemes = {
   retrowave: {
     name: "Retrowave",
     id: "retrowave",
+    isPremium: true,
     colors: {
       "--bg-main": "#2d132c",
       "--bg-container": "#801336",
@@ -2506,6 +2708,7 @@ const defaultThemes = {
   hackerGold: {
     name: "Hacker Gold",
     id: "hackerGold",
+    isPremium: true,
     colors: {
       "--bg-main": "#000000",
       "--bg-container": "#0a0a0a",
@@ -2524,6 +2727,7 @@ const defaultThemes = {
   sunset80s: {
     name: "80s Sunset",
     id: "sunset80s",
+    isPremium: true,
     colors: {
       "--bg-main": "#ff6b35",
       "--bg-container": "#f72585",
@@ -2542,6 +2746,7 @@ const defaultThemes = {
   spaceInvaders: {
     name: "Space Invaders",
     id: "spaceInvaders",
+    isPremium: true,
     colors: {
       "--bg-main": "#000000",
       "--bg-container": "#111111",
@@ -2727,6 +2932,14 @@ function createThemeCard(theme, isCustom) {
   const name = document.createElement("span");
   name.innerText = theme.name;
 
+  if (theme.isPremium && !isProUser) {
+    const lock = document.createElement("span");
+    lock.className = "pro-badge-inline";
+    lock.textContent = "PRO";
+    lock.style.marginLeft = "6px";
+    name.appendChild(lock);
+  }
+
   themeCard.appendChild(preview);
   themeCard.appendChild(name);
 
@@ -2842,16 +3055,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnSticker = document.getElementById("exportStickerBtn");
   if (btnSticker) {
     btnSticker.onclick = () => {
-      exportStickerToPhotos();
       if (exportMenu) exportMenu.classList.add("hidden");
+      showExportInterstitial(() => {
+        exportStickerToPhotos();
+        trackEvent("export_used", { format: "sticker" });
+      });
     };
   }
 
   const btnPng = document.getElementById("exportPngBtn");
   if (btnPng) {
     btnPng.onclick = () => {
-      exportCanvas(false, false);
       if (exportMenu) exportMenu.classList.add("hidden");
+      showExportInterstitial(() => {
+        exportCanvas(false, false);
+        trackEvent("export_used", { format: "png" });
+      });
+    };
+  }
+
+  // HD Export (Pro only)
+  const btnHdExport = document.getElementById("exportHdBtn");
+  if (btnHdExport) {
+    btnHdExport.onclick = () => {
+      if (!isProUser) {
+        showPaywall("HD Export is a Pro feature");
+        return;
+      }
+      if (exportMenu) exportMenu.classList.add("hidden");
+      showHdExportDialog();
     };
   }
 
