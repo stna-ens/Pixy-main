@@ -2036,7 +2036,6 @@ const defaultThemes = {
   synthwave: {
     name: "Synthwave '84",
     id: "synthwave",
-    isPremium: true,
     colors: {
       "--bg-main": "#2b213a",
       "--bg-container": "#241b2f",
@@ -2199,7 +2198,6 @@ const defaultThemes = {
   cyberpunk: {
     name: "Cyberpunk",
     id: "cyberpunk",
-    isPremium: true,
     colors: {
       "--bg-main": "#fceeb5",
       "--bg-container": "#000b1e",
@@ -2290,7 +2288,7 @@ const defaultThemes = {
   gtaViceCity: {
     name: "GTA Vice City",
     id: "gtaViceCity",
-    isPremium: true, // PRO FEATURE
+    // All preset themes are free
     colors: {
       "--bg-main": "#ff6ec7",
       "--bg-container": "#1a0a2e",
@@ -2543,7 +2541,6 @@ const defaultThemes = {
   pacman: {
     name: "Pac-Man",
     id: "pacman",
-    isPremium: true,
     colors: {
       "--bg-main": "#000000",
       "--bg-container": "#21177d",
@@ -2670,7 +2667,6 @@ const defaultThemes = {
   neonNights: {
     name: "Neon Nights",
     id: "neonNights",
-    isPremium: true,
     colors: {
       "--bg-main": "#0f0f1a",
       "--bg-container": "#1a1a2e",
@@ -2689,7 +2685,6 @@ const defaultThemes = {
   retrowave: {
     name: "Retrowave",
     id: "retrowave",
-    isPremium: true,
     colors: {
       "--bg-main": "#2d132c",
       "--bg-container": "#801336",
@@ -2708,7 +2703,6 @@ const defaultThemes = {
   hackerGold: {
     name: "Hacker Gold",
     id: "hackerGold",
-    isPremium: true,
     colors: {
       "--bg-main": "#000000",
       "--bg-container": "#0a0a0a",
@@ -2727,7 +2721,6 @@ const defaultThemes = {
   sunset80s: {
     name: "80s Sunset",
     id: "sunset80s",
-    isPremium: true,
     colors: {
       "--bg-main": "#ff6b35",
       "--bg-container": "#f72585",
@@ -2746,7 +2739,6 @@ const defaultThemes = {
   spaceInvaders: {
     name: "Space Invaders",
     id: "spaceInvaders",
-    isPremium: true,
     colors: {
       "--bg-main": "#000000",
       "--bg-container": "#111111",
@@ -3274,6 +3266,10 @@ if (deleteConfirmModal) {
   };
 }
 saveCustomBtn.onclick = () => {
+  if (!isProUser) {
+    showPaywall("Custom themes are a Pro feature");
+    return;
+  }
   const name = customInputs.name.value.trim() || `Custom Theme ${Date.now()}`;
 
   let id;
