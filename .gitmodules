@@ -1,0 +1,3 @@
+[submodule "Pixy"]
+	path = Pixy
+	url = https://github.com/stna-ens/Pixy.git
