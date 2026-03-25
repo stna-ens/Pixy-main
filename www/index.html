@@ -535,29 +535,43 @@
           <div class="feature-item">
             <span class="feature-icon">🎨</span>
             <div class="feature-text">
-              <strong>Custom Themes &amp; Cell Counts</strong>
-              <p>Create your own themes and use any grid size.</p>
+              <strong>Custom Themes</strong>
+              <p>Create and save your own custom themes.</p>
             </div>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">❤️</span>
+            <span class="feature-icon">📐</span>
             <div class="feature-text">
-              <strong>Support Indie Dev</strong>
-              <p>Help keep Pixy ad-free and updated.</p>
+              <strong>HD Export & Large Canvas</strong>
+              <p>Export up to 8x resolution. Canvas up to 256x256.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🚫</span>
+            <div class="feature-text">
+              <strong>No Ads</strong>
+              <p>Remove all ads for a clean workspace.</p>
             </div>
           </div>
         </div>
         <div class="paywall-actions">
+          <button id="purchaseLifetimeBtn" class="paywall-btn highlight">
+            <span>Lifetime Access</span>
+            <span>$7.99</span>
+          </button>
           <button id="purchaseMonthlyBtn" class="paywall-btn">
             <span>Monthly</span>
             <span>$2.99/mo</span>
           </button>
-          <button id="purchaseLifetimeBtn" class="paywall-btn highlight">
-            <span>Lifetime (Best Value)</span>
-            <span>$7.99</span>
-          </button>
         </div>
-        <p class="paywall-footer">Cancel monthly anytime. Lifetime is a one-time purchase.</p>
+        <div class="license-restore">
+          <input type="text" id="licenseKeyInput" placeholder="Enter license key..." class="retro-input" />
+          <button id="activateLicenseBtn" class="restore-btn">Activate</button>
+        </div>
+        <button id="restorePurchasesBtn" class="restore-btn">
+          Already purchased? Enter your license key above.
+        </button>
+        <p class="paywall-footer">One-time purchase. Yours forever.</p>
       </div>
     </div>
 
