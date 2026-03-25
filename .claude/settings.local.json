@@ -9,7 +9,13 @@
       "Bash(npx wrangler:*)",
       "Bash(gh run:*)",
       "Bash(gh secret:*)",
-      "Bash(gh workflow:*)"
+      "Bash(gh workflow:*)",
+      "Read(//Users/eneskis/.claude/**)",
+      "Bash(npx supabase:*)",
+      "Bash(brew list:*)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''mcpServers'''', {}\\), indent=2\\)\\)\")",
+      "Skill(update-config)",
+      "Bash(claude mcp:*)"
     ]
   }
 }
