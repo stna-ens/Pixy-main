@@ -15,7 +15,19 @@
       "Bash(brew list:*)",
       "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''mcpServers'''', {}\\), indent=2\\)\\)\")",
       "Skill(update-config)",
-      "Bash(claude mcp:*)"
+      "Bash(claude mcp:*)",
+      "Bash(find /Users/eneskis/Documents/Code/Pixy-main -name supabase.json -o -name supabase.config.ts -o -name .env* -type f)",
+      "Bash(xargs ls:*)",
+      "Bash(grep -r \"supabase\\\\|SUPABASE\" /Users/eneskis/Documents/Code/Pixy-main --include=*.md --include=*.txt --include=*.json*)",
+      "Bash(git log:*)",
+      "Bash(grep -r \"supabase\\\\|Supabase\\\\|DATABASE\\\\|POSTGRES\" /Users/eneskis/Documents/Code/Pixy-main --include=*.js --include=*.ts --include=*.json --exclude-dir=node_modules)",
+      "Bash(find /Users/eneskis/Documents/Code/Pixy-main -name *.sql -o -name *migration* -type f)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__list_migrations",
+      "mcp__supabase__list_projects",
+      "mcp__claude_ai_Supabase__list_projects",
+      "mcp__claude_ai_Supabase__apply_migration",
+      "mcp__claude_ai_Supabase__execute_sql"
     ]
   }
 }
